@@ -21,6 +21,5 @@ long = smaShorterPeriod >= smaLongerPeriod;
 p = zeros(1, nMarkets);
 p(long)  = 1;
 p(~long) = -1;
-p = ones(1,nMarkets);
 
 end
