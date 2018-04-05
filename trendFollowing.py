@@ -14,6 +14,8 @@ def myTradingSystem(DATE, OPEN, HIGH, LOW, CLOSE, VOL, exposure, equity, setting
     smaLongerPeriod=numpy.nansum(CLOSE[-periodLonger:,:],axis=0)/periodLonger
     smaShorterPeriod=numpy.nansum(CLOSE[-periodShorter:,:],axis=0)/periodShorter
 
+    settings['smaLongerPeriod'] = smaLongerPeriod
+
     longEquity= smaShorterPeriod > smaLongerPeriod
     shortEquity= ~longEquity
 
@@ -21,9 +23,7 @@ def myTradingSystem(DATE, OPEN, HIGH, LOW, CLOSE, VOL, exposure, equity, setting
     pos[longEquity]=1
     pos[shortEquity]=-1
 
-    weights = pos/numpy.nansum(abs(pos))
-
-    return weights, settings
+    return pos, settings
 
 
 def mySettings():
@@ -50,8 +50,8 @@ def mySettings():
     'F_NG', 'F_NQ', 'F_NR', 'F_O', 'F_OJ', 'F_PA', 'F_PL', 'F_RB', 'F_RU',
     'F_S','F_SB', 'F_SF', 'F_SI', 'F_SM', 'F_TU', 'F_TY', 'F_US','F_W', 'F_XX',
     'F_YM']
-    # settings['beginInSample'] = '20120506'
-    # settings['endInSample'] = '20150506'
+    settings['beginInSample'] = '20120506'
+    settings['endInSample'] = '20150506'
     settings['lookback']= 504
     settings['budget']= 10**6
     settings['slippage']= 0.05
