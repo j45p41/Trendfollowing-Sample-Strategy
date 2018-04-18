@@ -23,6 +23,7 @@ def myTradingSystem(DATE, OPEN, HIGH, LOW, CLOSE, VOL, exposure, equity, setting
     pos[longEquity]=1
     pos[shortEquity]=-1
 
+
     return pos, settings
 
 
